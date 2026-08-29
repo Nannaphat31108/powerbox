@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: power-box-sos
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.10
+      - key: DATABASE_URL
+        fromDatabase:
+          name: power-box-db
+          property: connectionString
+
+databases:
+  - name: power-box-db
