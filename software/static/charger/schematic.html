@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ผังวงจร · Smart Charger</title>
+<meta name="description" content="เครื่องชาร์จแบตตะกั่วกรด 12V แบบสแตนด์อโลน ใช้ Arduino Nano">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='3' y='8' width='24' height='17' rx='2.5' fill='none' stroke='%231d6b45' stroke-width='2.4'/%3E%3Crect x='27' y='13' width='3' height='7' rx='1' fill='%231d6b45'/%3E%3Cpath d='M16.5 11 11 17.5h4.5L14 22.5l6-7h-4.5z' fill='%23c47a2c'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Sans+Thai:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<header class="site"><div class="wrap"><a class="brand" href="index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="3" y="8" width="24" height="17" rx="2.5" fill="none" stroke="var(--accent)" stroke-width="2.4"/><rect x="27" y="13" width="3" height="7" rx="1" fill="var(--accent)"/><path d="M16.5 11 11 17.5h4.5L14 22.5l6-7h-4.5z" fill="var(--copper)"/></svg>SMART CHARGER</a><nav class="site" aria-label="เมนูหลัก"><a href="index.html">หน้าแรก</a><a href="schematic.html">วงจร</a><a href="pcb.html">PCB Layout</a><a href="3d.html">3D</a><a href="solder.html">บัดกรี</a><a href="build.html">วิธีประกอบ</a><a href="bom.html">อุปกรณ์</a><a href="code.html">โค้ด</a><a href="proteus.html">Proteus</a></nav></div></header>
+<div class="wrap">
+<main class="page">
+  <div>
+    <h2>ผังวงจร</h2>
+    <p class="lead">วงจรแบ่งเป็น 6 ส่วน เส้นที่มีป้ายชื่อเดียวกัน (เช่น <span class="net">VREG</span>, <span class="net">BAT+</span>, <span class="net">A0</span>) ต่อถึงกันทางไฟฟ้า แม้ไม่ได้ลากเส้นถึงกันในรูป ใช้หลักเดียวกับ Terminal ใน Proteus</p>
+  </div>
+  <div id="sch" class="scroll"><div class="sch-min" id="schsvg"></div></div>
+  <div class="grid2">
+    <div class="panel"><h3>หลักการทำงาน</h3>
+      <ul class="tight">
+        <li>D1 กันเสียบ adapter กลับขั้ว ส่วน F1 2A กันลัดวงจร</li>
+        <li>U1 (7805) จ่ายไฟ 5V ให้ Nano, จอ, รีเลย์ และบัซเซอร์</li>
+        <li>U2 (LM317T) ปรับแรงดันชาร์จด้วย RV1 และจำกัดกระแสในตัวที่ประมาณ 1.5A</li>
+        <li>RL1 เป็นสวิตช์เปิด/ปิดการชาร์จ ควบคุมจาก D7 ผ่าน Q1 โดยมี D2 กันไฟย้อนจากคอยล์</li>
+        <li>D3 กันแบตจ่ายไฟย้อนกลับเข้าวงจรตอนถอด adapter</li>
+        <li>A0 วัดแรงดันแบต, A1 วัดกระแสผ่าน R10 และ A2 วัดอุณหภูมิแบตด้วย NTC</li>
+      </ul>
+    </div>
+    <div class="panel"><h3>ลำดับการชาร์จ</h3>
+      <dl class="kv">
+        <dt>ไม่มีแบต</dt><dd>แรงดันต่ำกว่า 3V (ไม่ได้ต่อแบต หรือต่อกลับขั้ว)</dd>
+        <dt>พร้อม</dt><dd>พบแบตแล้ว เริ่มชาร์จเองใน 3 วินาที</dd>
+        <dt>ชาร์จ</dt><dd>รีเลย์ติด LED แดงติด ทุก 1 นาทีจะตัดไฟ 2 วินาทีเพื่อวัดแรงดันพัก</dd>
+        <dt>เต็ม</dt><dd>แรงดัน ≥14.1V และกระแส ≤0.02C ค้างไว้ 2 นาที รีเลย์จะตัด LED เขียวติด และบัซเซอร์ดัง 3 ครั้ง</dd>
+        <dt>ชาร์จเติม</dt><dd>แรงดันพักต่ำกว่า 12.6V นาน 30 วินาที จะเริ่มชาร์จใหม่เอง</dd>
+        <dt>ป้องกัน</dt><dd>ร้อนเกิน 45°C, กระแสเกิน 2.2A หรือชาร์จนานเกิน 20 ชม. จะหยุดชาร์จ</dd>
+      </dl>
+    </div>
+  </div>
+</main>
+<nav class="pager" aria-label="หน้าก่อนหน้าและถัดไป"><a href="index.html"><small>← ก่อนหน้า</small>หน้าแรก</a><a class="next" href="pcb.html"><small>ถัดไป →</small>PCB Layout</a></nav>
+</div>
+<footer class="site"><div class="wrap"><span>เครื่องชาร์จแบตอัจฉริยะแบบสแตนด์อโลน · Arduino Nano · แบตตะกั่วกรด 12V</span><span>ไฟล์ต้นฉบับอยู่ใน repo ที่ <span class="mono">hardware/charger/</span></span></div></footer>
+<script src="assets/data.js"></script>
+
+<script src="assets/app.js"></script>
+</body>
+</html>

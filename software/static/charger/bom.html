@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>รายการอุปกรณ์ · Smart Charger</title>
+<meta name="description" content="เครื่องชาร์จแบตตะกั่วกรด 12V แบบสแตนด์อโลน ใช้ Arduino Nano">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='3' y='8' width='24' height='17' rx='2.5' fill='none' stroke='%231d6b45' stroke-width='2.4'/%3E%3Crect x='27' y='13' width='3' height='7' rx='1' fill='%231d6b45'/%3E%3Cpath d='M16.5 11 11 17.5h4.5L14 22.5l6-7h-4.5z' fill='%23c47a2c'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Sans+Thai:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<header class="site"><div class="wrap"><a class="brand" href="index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="3" y="8" width="24" height="17" rx="2.5" fill="none" stroke="var(--accent)" stroke-width="2.4"/><rect x="27" y="13" width="3" height="7" rx="1" fill="var(--accent)"/><path d="M16.5 11 11 17.5h4.5L14 22.5l6-7h-4.5z" fill="var(--copper)"/></svg>SMART CHARGER</a><nav class="site" aria-label="เมนูหลัก"><a href="index.html">หน้าแรก</a><a href="schematic.html">วงจร</a><a href="pcb.html">PCB Layout</a><a href="3d.html">3D</a><a href="solder.html">บัดกรี</a><a href="build.html">วิธีประกอบ</a><a href="bom.html">อุปกรณ์</a><a href="code.html">โค้ด</a><a href="proteus.html">Proteus</a></nav></div></header>
+<div class="wrap">
+<main class="page">
+  <div>
+    <h2>รายการอุปกรณ์</h2>
+    <p class="lead">ซื้อได้ตามร้านอิเล็กทรอนิกส์ทั่วไปหรือร้านออนไลน์ คอลัมน์ "ชื่อใน Proteus" คือคำที่ใช้ค้นใน Pick Devices (กดปุ่ม P) ชื่ออาจต่างไปตามเวอร์ชันของ Proteus</p>
+  </div>
+  <div class="panel scroll"><table id="bomTbl"></table></div>
+  <div class="grid2">
+    <div class="panel"><h3>ของที่ต้องใช้นอกบอร์ด</h3><ul class="tight">
+      <li>Adapter 18–19 V อย่างน้อย 2 A (ใช้ adapter โน้ตบุ๊กได้) พร้อมแจ็ค DC ตัวเมียแบบขันสกรู</li>
+      <li>สายไฟเบอร์ 18 AWG สีแดง/ดำ ยาวประมาณ 1 ม. พร้อมปากคีบหรือหางปลากลม</li>
+      <li>หัววัดอุณหภูมิ NTC 10k B3950 แบบมีสาย</li>
+      <li>สายจัมเปอร์ตัวเมีย-ตัวเมีย 4 เส้น สำหรับต่อจอ LCD</li>
+      <li>เสารองบอร์ด M3 สูง 10 มม. 4 ชุด และกล่องใส่วงจร (ควรเจาะรูระบายอากาศ)</li>
+      <li>สาย USB สำหรับอัปโหลดโค้ดเข้า Nano</li>
+    </ul></div>
+    <div class="panel"><h3>เครื่องมือ</h3><ul class="tight">
+      <li>หัวแร้งปรับอุณหภูมิได้ 40–60 W (ตั้งที่ 330–360 °C)</li>
+      <li>ตะกั่วบัดกรีขนาด 0.8 มม. ที่มีฟลักซ์ในตัว และฟลักซ์เพิ่ม</li>
+      <li>ที่ดูดตะกั่ว และลวดซับตะกั่ว</li>
+      <li>มัลติมิเตอร์ (ต้องมีโหมดปี๊บ)</li>
+      <li>คีมตัดขา คีมปากแหลม และไขควง</li>
+      <li>ซิลิโคนระบายความร้อน น็อต M3 และแอลกอฮอล์ IPA สำหรับล้างฟลักซ์</li>
+      <li>ท่อหด และแท่นจับชิ้นงาน (Helping hands)</li>
+    </ul></div>
+  </div>
+</main>
+<nav class="pager" aria-label="หน้าก่อนหน้าและถัดไป"><a href="build.html"><small>← ก่อนหน้า</small>วิธีประกอบ</a><a class="next" href="code.html"><small>ถัดไป →</small>โค้ด</a></nav>
+</div>
+<footer class="site"><div class="wrap"><span>เครื่องชาร์จแบตอัจฉริยะแบบสแตนด์อโลน · Arduino Nano · แบตตะกั่วกรด 12V</span><span>ไฟล์ต้นฉบับอยู่ใน repo ที่ <span class="mono">hardware/charger/</span></span></div></footer>
+<script src="assets/data.js"></script>
+
+<script src="assets/app.js"></script>
+</body>
+</html>

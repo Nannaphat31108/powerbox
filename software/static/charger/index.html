@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Smart Battery Charger</title>
+<meta name="description" content="เครื่องชาร์จแบตตะกั่วกรด 12V แบบสแตนด์อโลน ใช้ Arduino Nano">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='3' y='8' width='24' height='17' rx='2.5' fill='none' stroke='%231d6b45' stroke-width='2.4'/%3E%3Crect x='27' y='13' width='3' height='7' rx='1' fill='%231d6b45'/%3E%3Cpath d='M16.5 11 11 17.5h4.5L14 22.5l6-7h-4.5z' fill='%23c47a2c'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Sans+Thai:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<header class="site"><div class="wrap"><a class="brand" href="index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="3" y="8" width="24" height="17" rx="2.5" fill="none" stroke="var(--accent)" stroke-width="2.4"/><rect x="27" y="13" width="3" height="7" rx="1" fill="var(--accent)"/><path d="M16.5 11 11 17.5h4.5L14 22.5l6-7h-4.5z" fill="var(--copper)"/></svg>SMART CHARGER</a><nav class="site" aria-label="เมนูหลัก"><a href="index.html">หน้าแรก</a><a href="schematic.html">วงจร</a><a href="pcb.html">PCB Layout</a><a href="3d.html">3D</a><a href="solder.html">บัดกรี</a><a href="build.html">วิธีประกอบ</a><a href="bom.html">อุปกรณ์</a><a href="code.html">โค้ด</a><a href="proteus.html">Proteus</a></nav></div></header>
+<div class="wrap">
+<section class="hero">
+  <div>
+    <div class="eyebrow">โปรเจคอิเล็กทรอนิกส์ · Arduino Nano</div>
+    <h1>เครื่องชาร์จแบตอัจฉริยะ<br>แบบสแตนด์อโลน</h1>
+    <p class="lead">ชาร์จแบตตะกั่วกรด 12V ได้เองโดยไม่ต้องต่อคอมพิวเตอร์ เครื่องวัดแรงดัน กระแส และอุณหภูมิของแบตตลอดเวลา ตัดไฟเองเมื่อแบตเต็ม ชาร์จเติมเมื่อแบตลดลง และหยุดชาร์จทันทีเมื่อเจอความผิดปกติ</p>
+    <div class="specs">
+      <span class="spec">ไฟเข้า <b>18–19 V DC</b></span>
+      <span class="spec">แบต <b>12 V 4.5–12 Ah</b></span>
+      <span class="spec">ชาร์จ <b>14.4 V · ≈1.5 A</b></span>
+      <span class="spec">PCB <b>2 ชั้น 101.6 × 81.3 มม.</b></span>
+    </div>
+    <div class="cta"><a class="primary" href="schematic.html">ดูผังวงจร</a><a class="ghost" href="bom.html">รายการอุปกรณ์</a><a class="ghost" href="3d.html">หมุนดู 3D</a></div>
+  </div>
+  <div class="view3d" data-spin="on" data-wheel="off" data-dist="190"><div class="tip3d" hidden></div><div class="hint3d">ลากเพื่อหมุนบอร์ด</div></div>
+</section>
+
+<section class="blk">
+  <h2>ทำงานอย่างไร</h2>
+  <ol class="flow">
+    <li><b>ตรวจแบต</b><span>วัดแรงดันขั้วแบต ถ้าต่ำกว่า 3V แปลว่ายังไม่ได้ต่อแบต หรือต่อกลับขั้ว</span></li>
+    <li><b>ชาร์จ 14.4 V</b><span>รีเลย์ต่อไฟจาก LM317 เข้าแบต แล้ววัดกระแสผ่าน R10 0.22Ω</span></li>
+    <li><b>ตัดเมื่อเต็ม</b><span>เมื่อแรงดันถึง 14.1V และกระแสลดลงต่ำกว่า 0.02C ค้างไว้ 2 นาที รีเลย์จะตัดไฟ</span></li>
+    <li><b>ชาร์จเติม</b><span>เมื่อแรงดันพักของแบตลดลงต่ำกว่า 12.6V จะเริ่มชาร์จให้อีกครั้งเอง</span></li>
+  </ol>
+  <div class="note"><b>ระบบป้องกัน:</b> ฟิวส์ 2A, ไดโอดกันต่อไฟเข้ากลับขั้ว, หยุดชาร์จเมื่อแบตร้อนเกิน 45°C, เมื่อกระแสเกิน 2.2A และเมื่อชาร์จนานเกิน 20 ชั่วโมง</div>
+</section>
+
+<section class="blk">
+  <h2>เนื้อหาในเว็บนี้</h2>
+  <div class="cards">
+    <a class="card" href="schematic.html"><i>วงจร</i><b>ผังวงจร</b><span>วงจร 6 ส่วน ตั้งแต่ภาคจ่ายไฟไปจนถึงจอและปุ่ม พร้อมหลักการทำงาน</span></a>
+    <a class="card" href="pcb.html"><i>PCB</i><b>PCB Layout</b><span>ลายวงจร 2 ชั้น ชี้ที่ขาไหนจะไฮไลต์ทั้ง net มีตารางพิกัดวางอุปกรณ์ด้วย</span></a>
+    <a class="card" href="3d.html"><i>3D</i><b>มุมมอง 3D</b><span>หมุนดูบอร์ดที่ประกอบเสร็จได้รอบตัว ทั้งด้านบนและด้านล่าง</span></a>
+    <a class="card" href="solder.html"><i>บัดกรี</i><b>ขาไหนเข้าอะไร</b><span>ทุกขาของอุปกรณ์ทุกตัว ต้องต่อไปที่ไหน และต้องหันขั้วอย่างไร</span></a>
+    <a class="card" href="build.html"><i>ประกอบ</i><b>วิธีประกอบแผ่น</b><span>14 ขั้นตอน ตั้งแต่ตรวจแผ่นเปล่า ทดสอบไฟ ไปจนถึงคาลิเบรต</span></a>
+    <a class="card" href="bom.html"><i>อุปกรณ์</i><b>รายการอุปกรณ์</b><span>ชิ้นส่วนทุกตัว จำนวน แพ็กเกจ ชื่อใน Proteus และเครื่องมือที่ต้องใช้</span></a>
+    <a class="card" href="code.html"><i>โค้ด</i><b>โค้ด Arduino</b><span>โค้ดสำหรับ Nano คอมไพล์ผ่านแล้ว คัดลอกหรือดาวน์โหลดไปใช้ได้เลย</span></a>
+    <a class="card" href="proteus.html"><i>Proteus</i><b>ทำใน Proteus</b><span>ขั้นตอนวาดใหม่ใน Proteus ให้ได้ทั้งหน้า Schematic, PCB และ 3D</span></a>
+  </div>
+</section>
+
+</div>
+<footer class="site"><div class="wrap"><span>เครื่องชาร์จแบตอัจฉริยะแบบสแตนด์อโลน · Arduino Nano · แบตตะกั่วกรด 12V</span><span>ไฟล์ต้นฉบับอยู่ใน repo ที่ <span class="mono">hardware/charger/</span></span></div></footer>
+<script src="assets/data.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

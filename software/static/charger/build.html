@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>วิธีประกอบ · Smart Charger</title>
+<meta name="description" content="เครื่องชาร์จแบตตะกั่วกรด 12V แบบสแตนด์อโลน ใช้ Arduino Nano">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='3' y='8' width='24' height='17' rx='2.5' fill='none' stroke='%231d6b45' stroke-width='2.4'/%3E%3Crect x='27' y='13' width='3' height='7' rx='1' fill='%231d6b45'/%3E%3Cpath d='M16.5 11 11 17.5h4.5L14 22.5l6-7h-4.5z' fill='%23c47a2c'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Sans+Thai:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<header class="site"><div class="wrap"><a class="brand" href="index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="3" y="8" width="24" height="17" rx="2.5" fill="none" stroke="var(--accent)" stroke-width="2.4"/><rect x="27" y="13" width="3" height="7" rx="1" fill="var(--accent)"/><path d="M16.5 11 11 17.5h4.5L14 22.5l6-7h-4.5z" fill="var(--copper)"/></svg>SMART CHARGER</a><nav class="site" aria-label="เมนูหลัก"><a href="index.html">หน้าแรก</a><a href="schematic.html">วงจร</a><a href="pcb.html">PCB Layout</a><a href="3d.html">3D</a><a href="solder.html">บัดกรี</a><a href="build.html">วิธีประกอบ</a><a href="bom.html">อุปกรณ์</a><a href="code.html">โค้ด</a><a href="proteus.html">Proteus</a></nav></div></header>
+<div class="wrap">
+<main class="page">
+  <div>
+    <h2>วิธีประกอบแผ่น</h2>
+    <p class="lead">เริ่มบัดกรีจากอุปกรณ์ที่เตี้ยที่สุดไปหาตัวที่สูงที่สุด เวลาคว่ำแผ่นลงบัดกรี อุปกรณ์จะไม่หลุดออกมา อย่าเพิ่งเสียบ Nano และอย่าเพิ่งต่อแบต จนกว่าจะทดสอบไฟในขั้นที่ 10 ผ่าน</p>
+  </div>
+  <div class="panel">
+  <ol class="steps">
+    <li><div><h3>ตรวจแผ่น PCB เปล่า</h3><p>ส่องหาเส้นลายขาดหรือเชื่อมกันเอง ใช้มัลติมิเตอร์โหมดปี๊บวัดระหว่าง <span class="net">VIN</span>, <span class="net">+5V</span> กับ <span class="net">GND</span> (ขา J1 ตัวล่าง) ต้องไม่มีเสียงปี๊บ</p></div></li>
+    <li><div><h3>ตัวต้านทาน 1/4W และไดโอดเล็ก</h3><p>R1–R9 และ D2 (1N4007) ดัดขาให้พอดีรู ใส่ให้ตัวแนบแผ่น บัดกรีแล้วตัดขาส่วนเกิน D2 ต้องหันแถบสีเทาไปทางขาสี่เหลี่ยม</p></div></li>
+    <li><div><h3>ไดโอดใหญ่และตัวต้านทานวัดกระแส</h3><p>D1, D3 (1N5408) หันแถบไปทางขาสี่เหลี่ยม R10 (0.22Ω 2W) ให้ยกสูงจากแผ่น 3–5 มม. เพราะตอนชาร์จตัวมันจะร้อน</p></div></li>
+    <li><div><h3>ตัวเก็บประจุเซรามิก</h3><p>C2 (334 = 0.33µF), C3, C5, C7, C8 (104 = 0.1µF) ตัวพวกนี้ไม่มีขั้ว ใส่ด้านไหนก็ได้</p></div></li>
+    <li><div><h3>ก้างปลาตัวเมียสำหรับ Nano</h3><p>เสียบก้างปลาตัวเมีย 15 ขา 2 แถวที่ตำแหน่ง A1 วิธีให้ตรงคือเสียบ Nano ค้างไว้บนก้างปลา บัดกรีขาหัว-ท้ายของแต่ละแถวก่อน แล้วถอด Nano ออกก่อนบัดกรีขาที่เหลือ</p></div></li>
+    <li><div><h3>อุปกรณ์เตี้ยที่มีขั้ว</h3><p>Q1 (BC547) ให้ด้านแบนตรงกับเส้นตรงบนลายพิมพ์ LED1 (แดง) และ LED2 (เขียว) ให้ขาสั้นหรือด้านแบนลงขาสี่เหลี่ยม ตามด้วยสวิตช์ SW1, SW2, ก้างปลา J3 (2 ขา), J4 (4 ขา) และ RV1 (ขา 1 อยู่ที่รูสี่เหลี่ยม)</p></div></li>
+    <li><div><h3>ตัวเก็บประจุอิเล็กโทรไลต์</h3><p>C4 (100µF 16V), C6 (100µF 25V), C1 (1000µF 35V) ขายาว (+) ลงรูสี่เหลี่ยม แถบสีขาวข้างตัว (−) ลงรูกลม</p></div></li>
+    <li><div><h3>อุปกรณ์ตัวใหญ่</h3><p>กระบอกฟิวส์ F1 (ใส่ฟิวส์ 2A), เทอร์มินัล J1, J2 (หันช่องเสียบสายออกขอบบอร์ด), บัซเซอร์ BZ1 (ขา + ลงรูสี่เหลี่ยม) และรีเลย์ RL1 ซึ่งใส่ได้ทางเดียวอยู่แล้ว</p></div></li>
+    <li><div><h3>เรกูเลเตอร์และฮีตซิงก์</h3><p>ทาซิลิโคนระบายความร้อน ขันน็อต M3 ยึด U1 (7805) และ U2 (LM317T) เข้ากับฮีตซิงก์ก่อน แล้วค่อยเสียบลงแผ่นและบัดกรี
+      <br><b class="pol">ระวัง:</b> แผ่นโลหะหลัง LM317 มีไฟ <span class="net">VREG</span> อยู่ ห้ามให้ฮีตซิงก์ของ U1 กับ U2 แตะกัน หรือแตะสายอื่น</p></div></li>
+    <li><div><h3>ทดสอบไฟครั้งแรก (ยังไม่เสียบ Nano ยังไม่ต่อแบต)</h3><p>ล้างฟลักซ์ด้วยแอลกอฮอล์ IPA ต่อ adapter 18–19V เข้า J1 แล้ววัดค่าต่อไปนี้:</p>
+      <ul class="tight"><li>ขา + ของ C1 ต้องได้ 17–18.5 V</li><li>ขา + ของ C4 ต้องได้ 4.9–5.1 V</li><li>ขา + ของ C6 ต้องได้ 12–18 V</li></ul>
+      <p>ถ้ามีตัวไหนร้อนผิดปกติ ให้ถอดไฟทันทีแล้วกลับไปตรวจขั้วอุปกรณ์</p></div></li>
+    <li><div><h3>ตั้งแรงดันชาร์จ</h3><p>หมุน RV1 จนวัดขา + ของ C6 ได้ <b>15.1 V</b> เมื่อไฟผ่าน D3 จะตกลงประมาณ 0.7 V แบตจะได้ประมาณ 14.4 V ถ้าเป็นแบต Gel ให้ตั้งที่ 14.8 V</p></div></li>
+    <li><div><h3>อัปโหลดโค้ดและเสียบ Nano</h3><p>ถอด adapter ออกก่อน แล้วอัปโหลดโค้ดจากหน้า <a href="code.html">โค้ด Arduino</a> ผ่านสาย USB ถอด USB แล้วเสียบ Nano ลงก้างปลา หันพอร์ต USB ออกขอบขวา ต่อจอ LCD เข้า J4 โดยให้ GND-VCC-SDA-SCL ตรงกับป้ายบนบอร์ดจอ เมื่อเสียบ adapter จอต้องขึ้นว่า "Connect battery"</p></div></li>
+    <li><div><h3>คาลิเบรต</h3><p>วัดขา 5V ของ Nano แล้วแก้ค่า <span class="mono">VCC_REAL</span> ในโค้ด ต่อแบตแล้วเทียบแรงดันบนจอกับมิเตอร์ จากนั้นแก้ค่า <span class="mono">V_CAL</span> เช่น มิเตอร์อ่าน 12.60 V แต่จออ่าน 12.45 V ให้ใส่ V_CAL = 12.60/12.45 = 1.012</p></div></li>
+    <li><div><h3>ต่อแบตและใช้งาน</h3><p>ต่อสายเบอร์ 18 AWG จาก J2 ไปที่แบต โดยสายแดงไปขั้ว + และสายดำไปขั้ว − ติดหัว NTC ไว้ข้างตัวแบตแล้วเสียบเข้า J3 เลือกความจุแบตด้วยปุ่ม MODE ก่อนเริ่มชาร์จ ประมาณ 3 วินาทีจะเริ่มชาร์จเอง</p></div></li>
+  </ol>
+  </div>
+  <div class="note"><b>ความปลอดภัย:</b> วงจรนี้ใช้ชาร์จแบตตะกั่วกรด 12V เท่านั้น <b>ห้ามใช้กับแบตลิเธียม</b> (Li-ion/LiFePO4) ชาร์จในที่อากาศถ่ายเท เพราะแบตตะกั่วอาจปล่อยแก๊สไฮโดรเจน และอย่าใช้ฟิวส์ที่ใหญ่กว่า 2A</div>
+</main>
+<nav class="pager" aria-label="หน้าก่อนหน้าและถัดไป"><a href="solder.html"><small>← ก่อนหน้า</small>บัดกรี</a><a class="next" href="bom.html"><small>ถัดไป →</small>อุปกรณ์</a></nav>
+</div>
+<footer class="site"><div class="wrap"><span>เครื่องชาร์จแบตอัจฉริยะแบบสแตนด์อโลน · Arduino Nano · แบตตะกั่วกรด 12V</span><span>ไฟล์ต้นฉบับอยู่ใน repo ที่ <span class="mono">hardware/charger/</span></span></div></footer>
+<script src="assets/data.js"></script>
+
+<script src="assets/app.js"></script>
+</body>
+</html>
