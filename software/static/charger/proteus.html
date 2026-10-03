@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ทำใน Proteus · Smart Charger</title>
+<meta name="description" content="เครื่องชาร์จแบตตะกั่วกรด 12V แบบสแตนด์อโลน ใช้ Arduino Nano">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='3' y='8' width='24' height='17' rx='2.5' fill='none' stroke='%231d6b45' stroke-width='2.4'/%3E%3Crect x='27' y='13' width='3' height='7' rx='1' fill='%231d6b45'/%3E%3Cpath d='M16.5 11 11 17.5h4.5L14 22.5l6-7h-4.5z' fill='%23c47a2c'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Sans+Thai:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<header class="site"><div class="wrap"><a class="brand" href="index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="3" y="8" width="24" height="17" rx="2.5" fill="none" stroke="var(--accent)" stroke-width="2.4"/><rect x="27" y="13" width="3" height="7" rx="1" fill="var(--accent)"/><path d="M16.5 11 11 17.5h4.5L14 22.5l6-7h-4.5z" fill="var(--copper)"/></svg>SMART CHARGER</a><nav class="site" aria-label="เมนูหลัก"><a href="index.html">หน้าแรก</a><a href="schematic.html">วงจร</a><a href="pcb.html">PCB Layout</a><a href="3d.html">3D</a><a href="solder.html">บัดกรี</a><a href="build.html">วิธีประกอบ</a><a href="bom.html">อุปกรณ์</a><a href="code.html">โค้ด</a><a href="proteus.html">Proteus</a></nav></div></header>
+<div class="wrap">
+<main class="page">
+  <div>
+    <h2>ทำเป็นไฟล์ Proteus</h2>
+    <p class="lead">ไฟล์ .pdsprj ต้องสร้างในโปรแกรม Proteus เอง ทำตามขั้นตอนนี้จะได้ครบทั้งหน้า Schematic, PCB Layout และ 3D Visualizer ในไฟล์เดียว</p>
+  </div>
+  <div class="panel">
+  <ol class="steps">
+    <li><div><h3>Schematic Capture</h3><p>กด P แล้วค้นชื่ออุปกรณ์ตามคอลัมน์ "ชื่อใน Proteus" ในหน้า<a href="bom.html">รายการอุปกรณ์</a> วางทุกตัวแล้วตั้ง Ref ให้ตรงกับแบบ (R1, C1, U2 …) จากนั้นเดินสายตามผังวงจร หรือใช้ Terminal Mode วาง Default terminal แล้วตั้งชื่อเดียวกัน เช่น VREG, BAT+, A0</p></div></li>
+    <li><div><h3>Arduino Nano</h3><p>ถ้าไลบรารีมี Arduino Nano ให้ใช้ตัวนั้น ซึ่งใส่ไฟล์ .hex จำลองได้ ถ้าไม่มี ให้ใช้ CONN-SIL15 สองตัวแทนขา 2 แถว ระยะห่างแถว 15.24 มม. (600 mil) ได้ footprint ตรงกับ Nano จริง ส่วนจอ LCD ในหน้า PCB ให้ใช้ CONN-SIL4 (J4)</p></div></li>
+    <li><div><h3>ตรวจ Package ทุกตัว</h3><p>อุปกรณ์จำลองบางตัว เช่น BUTTON และ JHD-2X16-I2C ในไฟล์เดิมของคุณ มี Package เป็น NULL จึงไม่โผล่ในหน้า PCB ให้ดับเบิลคลิกแล้วเลือก PCB Package หรือใช้ชิ้นส่วนที่มี footprint แทน จากนั้นสั่ง Tools → Electrical Rule Check ต้องไม่มี error</p></div></li>
+    <li><div><h3>PCB Layout</h3><p>เลือกเลเยอร์ Board Edge วาดสี่เหลี่ยมขนาด 101.6 × 81.3 มม. วางอุปกรณ์ตามตารางพิกัดในหน้า <a href="pcb.html">PCB Layout</a> หรือใช้ Auto-placer ตั้ง Design Rules ดังนี้: ลายสัญญาณ 0.5 มม., ลายไฟ 1.2 มม., ระยะห่าง 0.3 มม. แล้วสั่ง Auto-router หรือเดินลายเองตามรูป</p></div></li>
+    <li><div><h3>3D Visualizer</h3><p>ในหน้า PCB Layout เปิดเมนู Output → 3D Visualizer อุปกรณ์ที่มี Package จะขึ้นเป็นโมเดล 3D ให้เอง</p></div></li>
+    <li><div><h3>ส่งผลิต</h3><p>Output → Generate Gerber/Excellon Files แล้ว zip ไฟล์ส่งโรงงาน PCB เลือกบอร์ด 2 ชั้น หนา 1.6 มม. ทองแดง 1 oz</p></div></li>
+  </ol>
+  </div>
+</main>
+<nav class="pager" aria-label="หน้าก่อนหน้าและถัดไป"><a href="code.html"><small>← ก่อนหน้า</small>โค้ด</a></nav>
+</div>
+<footer class="site"><div class="wrap"><span>เครื่องชาร์จแบตอัจฉริยะแบบสแตนด์อโลน · Arduino Nano · แบตตะกั่วกรด 12V</span><span>ไฟล์ต้นฉบับอยู่ใน repo ที่ <span class="mono">hardware/charger/</span></span></div></footer>
+<script src="assets/data.js"></script>
+
+<script src="assets/app.js"></script>
+</body>
+</html>

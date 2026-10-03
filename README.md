@@ -117,3 +117,21 @@ Without GPS:
 - The transmitter-to-receiver SOS link works through LoRa without internet.
 - Only the receiver-to-web upload requires Wi-Fi/internet.
 - `client.setInsecure()` is included for simple HTTPS prototyping. For a production deployment, configure certificate verification.
+
+## Smart Battery Charger (เครื่องชาร์จแบตอัจฉริยะแบบสแตนด์อโลน)
+
+เว็บโปรเจคเครื่องชาร์จแบตตะกั่วกรด 12V ที่ใช้ Arduino Nano มีผังวงจร PCB Layout 2 ชั้น มุมมอง 3D ตารางบัดกรี วิธีประกอบ รายการอุปกรณ์ และโค้ด
+
+- เปิดดูที่ `/charger/` ของเว็บที่ deploy บน Render (Flask app เดิมเป็นตัวเสิร์ฟ)
+- เปิดในเครื่องได้โดยไม่ต้องรันเซิร์ฟเวอร์: เปิดไฟล์ `software/static/charger/index.html`
+- ไฟล์ต้นฉบับอยู่ใน `hardware/charger/`
+  - `SmartCharger/SmartCharger.ino` โค้ด Arduino Nano
+  - `pcb/design.py` ตำแหน่งอุปกรณ์และตัวเดินลาย PCB ซึ่งสร้างไฟล์ `pcb/pcb.json`
+  - `build_site.py` สร้าง `software/static/charger/assets/data.js` จากสองไฟล์ด้านบน
+
+ถ้าแก้โค้ดหรือตำแหน่งอุปกรณ์ ให้รัน
+
+```bash
+python hardware/charger/pcb/design.py
+python hardware/charger/build_site.py
+```

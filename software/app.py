@@ -1,6 +1,6 @@
 import os
 from datetime import datetime, timezone
-from flask import Flask, jsonify, render_template, request
+from flask import Flask, jsonify, redirect, render_template, request, send_from_directory
 from sqlalchemy import DateTime, Float, Integer, String, create_engine, desc
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, sessionmaker
 
@@ -47,6 +47,17 @@ def record_to_dict(row):
 @app.get("/")
 def dashboard():
     return render_template("index.html")
+
+CHARGER_DIR = os.path.join(app.static_folder, "charger")
+
+@app.get("/charger")
+def charger_root():
+    return redirect("/charger/", code=301)
+
+@app.get("/charger/")
+@app.get("/charger/<path:filename>")
+def charger_site(filename="index.html"):
+    return send_from_directory(CHARGER_DIR, filename)
 
 @app.get("/health")
 def health():

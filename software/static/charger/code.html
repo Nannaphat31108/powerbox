@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>โค้ด Arduino · Smart Charger</title>
+<meta name="description" content="เครื่องชาร์จแบตตะกั่วกรด 12V แบบสแตนด์อโลน ใช้ Arduino Nano">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='3' y='8' width='24' height='17' rx='2.5' fill='none' stroke='%231d6b45' stroke-width='2.4'/%3E%3Crect x='27' y='13' width='3' height='7' rx='1' fill='%231d6b45'/%3E%3Cpath d='M16.5 11 11 17.5h4.5L14 22.5l6-7h-4.5z' fill='%23c47a2c'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Sans+Thai:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<header class="site"><div class="wrap"><a class="brand" href="index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="3" y="8" width="24" height="17" rx="2.5" fill="none" stroke="var(--accent)" stroke-width="2.4"/><rect x="27" y="13" width="3" height="7" rx="1" fill="var(--accent)"/><path d="M16.5 11 11 17.5h4.5L14 22.5l6-7h-4.5z" fill="var(--copper)"/></svg>SMART CHARGER</a><nav class="site" aria-label="เมนูหลัก"><a href="index.html">หน้าแรก</a><a href="schematic.html">วงจร</a><a href="pcb.html">PCB Layout</a><a href="3d.html">3D</a><a href="solder.html">บัดกรี</a><a href="build.html">วิธีประกอบ</a><a href="bom.html">อุปกรณ์</a><a href="code.html">โค้ด</a><a href="proteus.html">Proteus</a></nav></div></header>
+<div class="wrap">
+<main class="page">
+  <div>
+    <h2>โค้ด Arduino Nano</h2>
+    <p class="lead">ต้องติดตั้งไลบรารี <b>LiquidCrystal I2C</b> (ของ Frank de Brabander) จาก Library Manager ก่อน ตั้งค่า Board เป็น "Arduino Nano" ถ้าเป็น Nano รุ่นจีน (ชิป CH340) และอัปโหลดไม่ได้ ให้เลือก Processor เป็น "ATmega328P (Old Bootloader)" โค้ดนี้คอมไพล์ผ่านแล้ว ใช้ flash 11.7 KB (38%)</p>
+  </div>
+  <div class="toolbar"><button class="btn primary" id="copyCode">คัดลอกโค้ด</button><a class="btn" href="SmartCharger.ino" download>ดาวน์โหลด SmartCharger.ino</a><span id="copyMsg" class="mono" style="color:var(--muted)"></span></div>
+  <pre class="code" id="codeBox"></pre>
+</main>
+<nav class="pager" aria-label="หน้าก่อนหน้าและถัดไป"><a href="bom.html"><small>← ก่อนหน้า</small>อุปกรณ์</a><a class="next" href="proteus.html"><small>ถัดไป →</small>Proteus</a></nav>
+</div>
+<footer class="site"><div class="wrap"><span>เครื่องชาร์จแบตอัจฉริยะแบบสแตนด์อโลน · Arduino Nano · แบตตะกั่วกรด 12V</span><span>ไฟล์ต้นฉบับอยู่ใน repo ที่ <span class="mono">hardware/charger/</span></span></div></footer>
+<script src="assets/data.js"></script>
+
+<script src="assets/app.js"></script>
+</body>
+</html>
